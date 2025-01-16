@@ -1,0 +1,298 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-attachment: fixed;
+    color: #1c1e21;
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1877f2;
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.create-memory {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    margin-bottom: 40px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.create-memory:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #1c1e21;
+    font-size: 1.5rem;
+}
+
+#memoryForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    resize: vertical;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #00C6FF;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.05),
+        0 0 0 3px rgba(0, 198, 255, 0.2);
+    background: white;
+}
+
+input[type="file"] {
+    padding: 12px;
+    border: 2px dashed rgba(24, 119, 242, 0.3);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+input[type="file"]:hover {
+    border-color: #1877f2;
+    background: white;
+}
+
+button {
+    background: linear-gradient(45deg, #00C6FF, #0072FF);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #00B4FF, #0065FF);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 114, 255, 0.4);
+}
+
+.memories-container {
+    display: grid;
+    gap: 30px;
+    padding: 10px;
+}
+
+.memory-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 25px 25px;
+    border-radius: 20px;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.memory-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #00C6FF, #0072FF);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.memory-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.memory-card:hover::before {
+    opacity: 1;
+}
+
+.memory-card img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin: 15px auto;
+    display: block;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        0 8px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 3px solid rgba(255, 255, 255, 0.8);
+}
+
+.memory-card img:hover {
+    transform: scale(1.03);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.15),
+        0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.memory-text {
+    margin: 20px 0;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    color: #2c3e50;
+    position: relative;
+    padding: 0 5px;
+}
+
+.memory-text::before {
+    content: '"';
+    font-size: 3em;
+    color: rgba(24, 119, 242, 0.1);
+    position: absolute;
+    left: -20px;
+    top: -20px;
+}
+
+.memory-date {
+    color: #65676b;
+    font-size: 0.9em;
+    font-weight: 500;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.memory-date::before {
+    content: '🕒';
+    font-size: 1.1em;
+}
+
+.memory-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.memory-card:hover .memory-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.edit-btn {
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.edit-btn:hover {
+    background: linear-gradient(45deg, #45a049, #3d8b40);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+.delete-btn {
+    background: linear-gradient(45deg, #ff4444, #cc0000);
+    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+}
+
+.delete-btn:hover {
+    background: linear-gradient(45deg, #cc0000, #b30000);
+    box-shadow: 0 4px 12px rgba(255, 68, 68, 0.4);
+}
+
+.btn-icon {
+    font-size: 1.1em;
+}
+
+.edited-badge {
+    font-size: 0.8em;
+    color: #666;
+    font-style: italic;
+    margin-left: 5px;
+}
+
+#submitBtn {
+    background: linear-gradient(45deg, #00C6FF, #0072FF);
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.3);
+}
+
+#submitBtn:hover {
+    background: linear-gradient(45deg, #00B4FF, #0065FF);
+    box-shadow: 0 6px 20px rgba(0, 114, 255, 0.4);
+}

@@ -1,0 +1,16 @@
+{
+  "name": "memo-app",
+  "version": "1.0.0",
+  "description": "A memories app for posting messages with pictures",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "memo-app": "file:",
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.32.6"
+  }
+}
